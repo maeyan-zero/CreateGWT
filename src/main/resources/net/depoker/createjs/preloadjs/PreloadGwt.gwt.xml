@@ -1,0 +1,12 @@
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.0//EN"
+        "http://google-web-toolkit.googlecode.com/svn/releases/2.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="preload_gwt">
+
+    <!-- Include Core GWT -->
+    <inherits name="com.google.gwt.user.User"/>
+    <!-- Include common CreateJs library -->
+    <inherits name="net.depoker.creategwt.common.CreateGwt"/>
+
+    <source path="client"/>
+
+</module>
