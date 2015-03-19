@@ -5,7 +5,7 @@
     <!-- Include Core GWT -->
     <inherits name="com.google.gwt.user.User"/>
     <!-- Include common CreateJs library -->
-    <inherits name="net.depoker.creategwt.common.CreateGwt"/>
+    <inherits name="net.depoker.createjs.common.CreateGwt"/>
 
     <source path="client"/>
 

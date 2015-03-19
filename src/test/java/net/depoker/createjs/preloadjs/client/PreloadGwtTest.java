@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PreloadGwtTest extends GWTTestCase {
   @Override
   public String getModuleName() {
-    return "au.com.desoftware.createjs.preloadjs.PreloadGwt";
+    return "net.depoker.createjs.preloadjs.PreloadGwt";
   }
 
   public void testInjectLib() {
