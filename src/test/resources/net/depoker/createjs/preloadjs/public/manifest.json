@@ -1,0 +1,13 @@
+{
+  "path": "assets",
+  "manifest": [
+    {
+      "id": "logo",
+      "src": "logo.png"
+    },
+    {
+      "id": "about",
+      "src": "about.txt"
+    }
+  ]
+}

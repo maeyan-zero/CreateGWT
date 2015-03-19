@@ -1,0 +1,1 @@
+A JavaScript library that lets you manage and co-ordinate the loading of assets. Built in plugin model to assist with preloading in other CreateJS libraries.
