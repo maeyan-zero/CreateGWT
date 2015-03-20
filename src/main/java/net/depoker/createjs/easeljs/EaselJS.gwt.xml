@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.7.0//EN"
+        "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
+<module rename-to="easeljs">
+
+    <inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.json.JSON"/>
+
+	<!-- NOTE: There is a compatibility issue with EaselJS and GWT.
+
+		 In the SpriteSheet.js class, the Array type checks must be modified.
+         "o instanceof Array" becomes "Object.prototype.toString.call(o) === '[object Array]'"
+
+         This is because of a javascript quirk passing cross frame prototypes.
+
+         The case is well documented here:
+         http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
+
+         Be sure to change whenever EaselJS is updated. -->
+
+    <source path="client" />
+
+</module>
