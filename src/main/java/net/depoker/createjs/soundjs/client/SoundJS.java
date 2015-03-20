@@ -267,9 +267,10 @@ public class SoundJS {
     {
 	    SoundJsResources INSTANCE = GWT.create(SoundJsResources.class);
 
-	    @Source("resources/scripts/soundjs-0.3.0.min.js") TextResource soundJsScript();
+	    @Source("soundjs-0.3.0.min.js")
+	    TextResource soundJsScript();
 
-	    @Source("resources/scripts/soundjs.flashplugin-0.3.0.min.js")
+	    @Source("soundjs.flashplugin-0.3.0.min.js")
 	    TextResource flashPluginScript();
     }
 }

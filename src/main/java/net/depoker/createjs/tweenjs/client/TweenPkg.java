@@ -40,6 +40,6 @@ public class TweenPkg
 	{
 		TweenResources INSTANCE = GWT.create(TweenResources.class);
 
-		@Source("resources/scripts/tweenjs-0.5.1.min.js") TextResource tweenJsScript();
+		@Source("tweenjs-0.5.1.combined.js") TextResource tweenJsScript();
 	}
 }

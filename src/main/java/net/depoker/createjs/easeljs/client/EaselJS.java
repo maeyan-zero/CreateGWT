@@ -99,7 +99,7 @@ public class EaselJS extends HTMLPanel
 	public interface Resources extends ClientBundle  {
 		Resources INSTANCE = GWT.create(Resources.class);
 
-		@Source("resources/scripts/easeljs-0.7.1.min.js")
+		@Source("easeljs-0.7.1.min.js")
 		TextResource easelJs();
 	}
 }
