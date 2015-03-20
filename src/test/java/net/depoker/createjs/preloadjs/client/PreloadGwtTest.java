@@ -11,19 +11,19 @@ public class PreloadGwtTest extends GWTTestCase {
   }
 
   public void testInjectLib() {
-    assertTrue("First invocation should return true to indicate dom change.", Injector.ensureInjected());
-    assertFalse("Sources already injected, should return false.", Injector.ensureInjected());
+    assertTrue("First invocation should return true to indicate dom change.", PreloadJs.ensureInjected());
+    assertFalse("Sources already injected, should return false.", PreloadJs.ensureInjected());
   }
 
   public void testLoadManifest() {
-    Injector.ensureInjected();
+	  PreloadJs.ensureInjected();
     LoadQueue queue = new LoadQueue(false);
     queue.loadManifest("manifest.json");
     queue.load();
   }
 
   public void testLoadManifestObject() {
-    Injector.ensureInjected();
+	  PreloadJs.ensureInjected();
 
     ArrayList<LoadItem> items = new ArrayList<>();
     items.add(new LoadItem("about.txt"));
