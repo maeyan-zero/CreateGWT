@@ -2189,7 +2189,7 @@ this.createjs = this.createjs || {};
       return item;
     } else if (value instanceof s) {
       return value;
-    } else if (value instanceof Object) { // Don't modify object, allows users to attach random data to the item.
+    } else if (Object.prototype.toString.call(value) === '[object Object]') { // Don't modify object, allows users to attach random data to the item.
       // TODO: Disallow objects with no src?
       return value;
     } else {
@@ -4858,7 +4858,7 @@ this.createjs = this.createjs || {};
   p.remove = function (idsOrUrls) {
     var args = null;
 
-    if (idsOrUrls && !(idsOrUrls instanceof Array)) {
+    if (idsOrUrls && !(Object.prototype.toString.call(idsOrUrls) === '[object Array]')) {
       args = [idsOrUrls];
     } else if (idsOrUrls) {
       args = idsOrUrls;
@@ -5093,7 +5093,7 @@ this.createjs = this.createjs || {};
     var path = null;
 
     // Array-based list of items
-    if (manifest instanceof Array) {
+    if (Object.prototype.toString.call(manifest) === '[object Array]') {
       if (manifest.length == 0) {
         var event = new createjs.ErrorEvent("PRELOAD_MANIFEST_EMPTY");
         this._sendError(event);

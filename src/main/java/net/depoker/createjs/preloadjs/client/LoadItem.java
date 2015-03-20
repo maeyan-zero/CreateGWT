@@ -32,6 +32,10 @@ public class LoadItem {
     return impl.getSrc();
   }
 
+	public String getType() {
+		return impl.getType();
+	}
+
   public boolean isOrderMaintained() {
     return impl.isOrderMaintained();
   }

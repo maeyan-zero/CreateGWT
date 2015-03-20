@@ -15,8 +15,8 @@ public class Manifest {
     impl = (ManifestImpl) ManifestImpl.createObject();
   }
 
-  protected Manifest(ManifestImpl impl) {
-    this.impl = impl;
+	public Manifest(JavaScriptObject impl) {
+    this.impl = impl.cast();
   }
 
   public ManifestImpl getImpl() {

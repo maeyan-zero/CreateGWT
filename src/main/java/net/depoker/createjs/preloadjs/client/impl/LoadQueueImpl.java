@@ -97,6 +97,10 @@ public class LoadQueueImpl extends AbstractLoaderImpl {
     this.unregisterLoader(loader);
   }-*/;
 
+  public final native void maintainScriptOrder(boolean value) /*-{
+	return this.maintainScriptOrder = value;
+  }-*/;
+
   public final native boolean maintainScriptOrder() /*-{
     return this.maintainScriptOrder;
   }-*/;

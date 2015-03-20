@@ -132,6 +132,10 @@ public class LoadQueue extends AbstractLoader {
     return impl.maintainScriptOrder();
   }
 
+  public void setMaintainScriptOrder(boolean value) {
+	impl.maintainScriptOrder(value);
+  }
+
   public LoadQueue getNext() {
     return new LoadQueue(impl.next());
   }
