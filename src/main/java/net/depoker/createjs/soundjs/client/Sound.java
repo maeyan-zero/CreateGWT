@@ -13,7 +13,7 @@ import com.google.gwt.resources.client.TextResource;
  * @author Grant Skinner @gskinner. Wrapper by Sam Edge @maeyanZero
  * @version 0.2.0
  */
-public class SoundJS {
+public class Sound {
 
     /**
      * The duration in milliseconds to determine a timeout.
@@ -241,7 +241,7 @@ public class SoundJS {
      * @return True if this method manipulated the DOM
      */
     public static boolean ensureInjected() {
-        if (!SoundJS.isInjected()) {
+        if (!Sound.isInjected()) {
             ScriptInjector.fromString(SoundJsResources.INSTANCE.soundJsScript().getText())
                           .setWindow(ScriptInjector.TOP_WINDOW)
                           .inject();

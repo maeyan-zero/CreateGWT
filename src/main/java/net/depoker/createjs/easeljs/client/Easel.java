@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 /**
  * GWT implementation of EaselJS - see www.createjs.com
  */
-public class EaselJS extends HTMLPanel
+public class Easel extends HTMLPanel
 {
 	/** The GWT Stage implementation. Each canvas has one stage only. */
 	protected final Stage stage;
@@ -22,7 +22,7 @@ public class EaselJS extends HTMLPanel
 	 * @param width  The default width of the drawing area in pixels.
 	 * @param height The default height of the drawing area in pixels.
 	 */
-	public EaselJS(int width, int height)
+	public Easel(int width, int height)
 	{
 		super("canvas", null);
 		setWidth(width + "px");
@@ -71,7 +71,7 @@ public class EaselJS extends HTMLPanel
 	 * @return True if this method manipulated the DOM
 	 */
 	public static boolean ensureInjected() {
-		if (!EaselJS.isInjected()) {
+		if (!Easel.isInjected()) {
 			ScriptInjector.fromString(Resources.INSTANCE.easelJs().getText())
 			              .setWindow(ScriptInjector.TOP_WINDOW)
 			              .inject();
