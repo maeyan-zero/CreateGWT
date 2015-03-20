@@ -20,7 +20,7 @@ import com.google.gwt.core.client.JsonUtils;
  * @author Wrapper by Sam Edge @maeyanZero
  * @version 0.2.0
  */
-public class Tween {
+public class TweenJs {
 
     private TweenImpl overlay;
 
@@ -49,7 +49,7 @@ public class Tween {
      * Creates a new Tween instance using the specified overlay.
      * @param overlay The tween overlay implementation.
      */
-    public Tween(TweenImpl overlay) {
+    public TweenJs(TweenImpl overlay) {
         this.overlay = overlay;
     }
 
@@ -67,8 +67,8 @@ public class Tween {
      * @param target The target object that will have its properties tweened.
      * @return The new tween instance.
      */
-    public static Tween get(JavaScriptObject target) {
-        return new Tween(TweenImpl.get(target));
+    public static TweenJs get(JavaScriptObject target) {
+        return new TweenJs(TweenImpl.get(target));
     }
 
     /**
@@ -86,8 +86,8 @@ public class Tween {
      *                  <li><b>position</b>: indicates the initial position for this timeline</li></ul>
      * @return The new tween instance.
      */
-    public static Tween get(JavaScriptObject target, JavaScriptObject props) {
-        return new Tween(TweenImpl.get(target, props));
+    public static TweenJs get(JavaScriptObject target, JavaScriptObject props) {
+        return new TweenJs(TweenImpl.get(target, props));
     }
 
     /**
@@ -105,8 +105,8 @@ public class Tween {
      *                  <li><b>position</b>: indicates the initial position for this timeline</li></ul>
      * @return The new tween instance.
      */
-    public static Tween get(JavaScriptObject target, String props) {
-        return new Tween(TweenImpl.get(target, JsonUtils.unsafeEval(props)));
+    public static TweenJs get(JavaScriptObject target, String props) {
+        return new TweenJs(TweenImpl.get(target, JsonUtils.unsafeEval(props)));
     }
 
 	/**
@@ -124,15 +124,15 @@ public class Tween {
 	 *                  <li><b>position</b>: indicates the initial position for this timeline</li></ul>
 	 * @return The new tween instance.
 	 */
-	public static Tween get(JavaScriptObject target, TweenBuilder builder) {
-		return new Tween(TweenImpl.get(target, builder.toJso()));
+	public static TweenJs get(JavaScriptObject target, TweenBuilder builder) {
+		return new TweenJs(TweenImpl.get(target, builder.toJso()));
 	}
 
     /**
      * Removes all existing tweens for a target. This is called automatically by new tweens if the "override" prop is true.
      * @param target The target object to remove existing tweens from.
      */
-    public static void removeTweens(Tween target) {
+    public static void removeTweens(TweenJs target) {
         TweenImpl.removeTweens(target.getOverlay());
     }
 
@@ -197,8 +197,8 @@ public class Tween {
      * @param callback The function to call.
      * @return The tween instance for chain calls.
      */
-    public Tween call(TweenCallback callback) {
-        return new Tween(overlay.call(callback));
+    public TweenJs call(TweenCallback callback) {
+        return new TweenJs(overlay.call(callback));
     }
 
     /**
@@ -211,8 +211,8 @@ public class Tween {
      * @param scope    The scope to call the function in. If omitted, it will be called in the target's scope.
      * @return The tween instance for chain calls.
      */
-    public Tween call(TweenCallback callback, JavaScriptObject params, JavaScriptObject scope) {
-        return new Tween(overlay.call(callback, params, scope));
+    public TweenJs call(TweenCallback callback, JavaScriptObject params, JavaScriptObject scope) {
+        return new TweenJs(overlay.call(callback, params, scope));
     }
 
     /**
@@ -223,8 +223,8 @@ public class Tween {
      * @param params   The parameters to call the function with.
      * @return The tween instance for chain calls.
      */
-    public Tween call(TweenCallback callback, JavaScriptObject params) {
-        return new Tween(overlay.call(callback, params));
+    public TweenJs call(TweenCallback callback, JavaScriptObject params) {
+        return new TweenJs(overlay.call(callback, params));
     }
 
     /**
@@ -235,8 +235,8 @@ public class Tween {
      * @param params   The parameters to call the function with.
      * @return The tween instance for chain calls.
      */
-    public Tween call(TweenCallback callback, String params) {
-        return new Tween(overlay.call(callback, JsonUtils.unsafeEval(params)));
+    public TweenJs call(TweenCallback callback, String params) {
+        return new TweenJs(overlay.call(callback, JsonUtils.unsafeEval(params)));
     }
 
 	/**
@@ -247,8 +247,8 @@ public class Tween {
 	 * @param builder  The parameters to call the function with.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween call(TweenCallback callback, TweenBuilder builder) {
-		return new Tween(overlay.call(callback, builder.toJso()));
+	public TweenJs call(TweenCallback callback, TweenBuilder builder) {
+		return new TweenJs(overlay.call(callback, builder.toJso()));
 	}
 
     /**
@@ -261,8 +261,8 @@ public class Tween {
      * @param scope    The scope to call the function in. If omitted, it will be called in the target's scope.
      * @return The tween instance for chain calls.
      */
-    public Tween call(TweenCallback callback, String params, JavaScriptObject scope) {
-        return new Tween(overlay.call(callback, JsonUtils.unsafeEval(params), scope));
+    public TweenJs call(TweenCallback callback, String params, JavaScriptObject scope) {
+        return new TweenJs(overlay.call(callback, JsonUtils.unsafeEval(params), scope));
     }
 
 	/**
@@ -275,8 +275,8 @@ public class Tween {
 	 * @param scope    The scope to call the function in. If omitted, it will be called in the target's scope.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween call(TweenCallback callback, TweenBuilder builder, JavaScriptObject scope) {
-		return new Tween(overlay.call(callback, builder.toJso(), scope));
+	public TweenJs call(TweenCallback callback, TweenBuilder builder, JavaScriptObject scope) {
+		return new TweenJs(overlay.call(callback, builder.toJso(), scope));
 	}
 
     /**
@@ -284,8 +284,8 @@ public class Tween {
      *
      * @return The tween instance for chain calls.
      */
-    public Tween pause() {
-        return new Tween(overlay.pause(null));
+    public TweenJs pause() {
+        return new TweenJs(overlay.pause(null));
     }
 
     /**
@@ -294,8 +294,8 @@ public class Tween {
      * @param tween The tween to play. If null, it pauses this tween.
      * @return The tween instance for chain calls.
      */
-    public Tween pause(Tween tween) {
-        return new Tween(overlay.pause(tween.getOverlay()));
+    public TweenJs pause(TweenJs tween) {
+        return new TweenJs(overlay.pause(tween.getOverlay()));
     }
 
     /**
@@ -304,8 +304,8 @@ public class Tween {
      * @param tween
      * @return The tween instance for chain calls.
      */
-    public Tween play(Tween tween) {
-        return new Tween(overlay.play(tween.getOverlay()));
+    public TweenJs play(TweenJs tween) {
+        return new TweenJs(overlay.play(tween.getOverlay()));
     }
 
     /**
@@ -315,8 +315,8 @@ public class Tween {
      * @param props The properties to set.
      * @return The tween instance for chain calls.
      */
-    public Tween set(JavaScriptObject props) {
-        return new Tween(overlay.set(props));
+    public TweenJs set(JavaScriptObject props) {
+        return new TweenJs(overlay.set(props));
     }
 
     /**
@@ -326,8 +326,8 @@ public class Tween {
      * @param props The properties to set.
      * @return The tween instance for chain calls.
      */
-    public Tween set(String props) {
-        return new Tween(overlay.set(JsonUtils.unsafeEval(props)));
+    public TweenJs set(String props) {
+        return new TweenJs(overlay.set(JsonUtils.unsafeEval(props)));
     }
 
 	/**
@@ -337,8 +337,8 @@ public class Tween {
 	 * @param builder The properties to set.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween set(TweenBuilder builder) {
-		return new Tween(overlay.set(builder.toJso()));
+	public TweenJs set(TweenBuilder builder) {
+		return new TweenJs(overlay.set(builder.toJso()));
 	}
 
     /**
@@ -349,8 +349,8 @@ public class Tween {
      * @param target The target to set the properties on. If omitted, they will be set on the tween's target.
      * @return The tween instance for chain calls.
      */
-    public Tween set(JavaScriptObject props, JavaScriptObject target) {
-        return new Tween(overlay.set(props, target));
+    public TweenJs set(JavaScriptObject props, JavaScriptObject target) {
+        return new TweenJs(overlay.set(props, target));
     }
 
     /**
@@ -361,8 +361,8 @@ public class Tween {
      * @param target The target to set the properties on. If omitted, they will be set on the tween's target.
      * @return The tween instance for chain calls.
      */
-    public Tween set(String props, JavaScriptObject target) {
-        return new Tween(overlay.set(JsonUtils.unsafeEval(props), target));
+    public TweenJs set(String props, JavaScriptObject target) {
+        return new TweenJs(overlay.set(JsonUtils.unsafeEval(props), target));
     }
 
 	/**
@@ -373,8 +373,8 @@ public class Tween {
 	 * @param target The target to set the properties on. If omitted, they will be set on the tween's target.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween set(TweenBuilder builder, JavaScriptObject target) {
-		return new Tween(overlay.set(builder.toJso(), target));
+	public TweenJs set(TweenBuilder builder, JavaScriptObject target) {
+		return new TweenJs(overlay.set(builder.toJso(), target));
 	}
 
     /**
@@ -397,8 +397,8 @@ public class Tween {
      *                    reverse.</li>
      * @return The tween instance for chain calls.
      */
-    public Tween setPosition(int value, int actionsMode) {
-        return new Tween(overlay.setPosition(value, actionsMode));
+    public TweenJs setPosition(int value, int actionsMode) {
+        return new TweenJs(overlay.setPosition(value, actionsMode));
     }
 
     /**
@@ -411,8 +411,8 @@ public class Tween {
      * @param duration The duration of the wait in milliseconds (or in ticks if useTicks is true).
      * @return The tween instance for chain calls.
      */
-    public Tween to(String props, int duration) {
-        return new Tween(overlay.to(JsonUtils.unsafeEval(props), duration));
+    public TweenJs to(String props, int duration) {
+        return new TweenJs(overlay.to(JsonUtils.unsafeEval(props), duration));
     }
 
 	/**
@@ -425,8 +425,8 @@ public class Tween {
 	 * @param duration The duration of the wait in milliseconds (or in ticks if useTicks is true).
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween to(TweenBuilder builder, int duration) {
-		return new Tween(overlay.to(builder.toJso(), duration));
+	public TweenJs to(TweenBuilder builder, int duration) {
+		return new TweenJs(overlay.to(builder.toJso(), duration));
 	}
 
     /**
@@ -440,8 +440,8 @@ public class Tween {
      * @param ease     The easing function to use for this tween.
      * @return The tween instance for chain calls.
      */
-    public Tween to(String props, int duration, Ease ease) {
-        return new Tween(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, 0, 0));
+    public TweenJs to(String props, int duration, Ease ease) {
+        return new TweenJs(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, 0, 0));
     }
 
 	/**
@@ -455,8 +455,8 @@ public class Tween {
 	 * @param ease     The easing function to use for this tween.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween to(TweenBuilder builder, int duration, Ease ease) {
-		return new Tween(overlay.to(builder.toJso(), duration, ease.code, 0, 0));
+	public TweenJs to(TweenBuilder builder, int duration, Ease ease) {
+		return new TweenJs(overlay.to(builder.toJso(), duration, ease.code, 0, 0));
 	}
 
     /**
@@ -473,8 +473,8 @@ public class Tween {
      *                 supplied.
      * @return The tween instance for chain calls.
      */
-    public Tween to(String props, int duration, Ease ease, double param1) {
-        return new Tween(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, (float) param1, 0));
+    public TweenJs to(String props, int duration, Ease ease, double param1) {
+        return new TweenJs(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, (float) param1, 0));
     }
 
 	/**
@@ -491,8 +491,8 @@ public class Tween {
 	 *                 supplied.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween to(TweenBuilder builder, int duration, Ease ease, double param1) {
-		return new Tween(overlay.to(builder.toJso(), duration, ease.code, (float)param1, 0));
+	public TweenJs to(TweenBuilder builder, int duration, Ease ease, double param1) {
+		return new TweenJs(overlay.to(builder.toJso(), duration, ease.code, (float)param1, 0));
 	}
 
     /**
@@ -510,8 +510,8 @@ public class Tween {
      * @param param2   The second parameter.
      * @return The tween instance for chain calls.
      */
-    public Tween to(String props, int duration, Ease ease, double param1, double param2) {
-        return new Tween(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, (float) param1, (float) param2));
+    public TweenJs to(String props, int duration, Ease ease, double param1, double param2) {
+        return new TweenJs(overlay.to(JsonUtils.unsafeEval(props), duration, ease.code, (float) param1, (float) param2));
     }
 
 	/**
@@ -529,8 +529,8 @@ public class Tween {
 	 * @param param2   The second parameter.
 	 * @return The tween instance for chain calls.
 	 */
-	public Tween to(TweenBuilder builder, int duration, Ease ease, double param1, double param2) {
-		return new Tween(overlay.to(builder.toJso(), duration, ease.code, (float) param1, (float) param2));
+	public TweenJs to(TweenBuilder builder, int duration, Ease ease, double param1, double param2) {
+		return new TweenJs(overlay.to(builder.toJso(), duration, ease.code, (float) param1, (float) param2));
 	}
 
 
@@ -544,8 +544,8 @@ public class Tween {
      * @param duration The duration of the wait in milliseconds (or in ticks if useTicks is true).
      * @return The tween instance for chain calls.
      */
-    public Tween to(JavaScriptObject props, int duration) {
-        return new Tween(overlay.to(props, duration));
+    public TweenJs to(JavaScriptObject props, int duration) {
+        return new TweenJs(overlay.to(props, duration));
     }
 
     /**
@@ -559,8 +559,8 @@ public class Tween {
      * @param ease     The easing function to use for this tween.
      * @return The tween instance for chain calls.
      */
-    public Tween to(JavaScriptObject props, int duration, Ease ease) {
-        return new Tween(overlay.to(props, duration, ease.code, 0, 0));
+    public TweenJs to(JavaScriptObject props, int duration, Ease ease) {
+        return new TweenJs(overlay.to(props, duration, ease.code, 0, 0));
     }
 
     /**
@@ -577,8 +577,8 @@ public class Tween {
      *                 supplied.
      * @return The tween instance for chain calls.
      */
-    public Tween to(JavaScriptObject props, int duration, Ease ease, double param1) {
-        return new Tween(overlay.to(props, duration, ease.code, (float) param1, 0));
+    public TweenJs to(JavaScriptObject props, int duration, Ease ease, double param1) {
+        return new TweenJs(overlay.to(props, duration, ease.code, (float) param1, 0));
     }
 
     /**
@@ -596,8 +596,8 @@ public class Tween {
      * @param param2   The second parameter.
      * @return The tween instance for chain calls.
      */
-    public Tween to(JavaScriptObject props, int duration, Ease ease, double param1, double param2) {
-        return new Tween(overlay.to(props, duration, ease.code, (float) param1, (float) param2));
+    public TweenJs to(JavaScriptObject props, int duration, Ease ease, double param1, double param2) {
+        return new TweenJs(overlay.to(props, duration, ease.code, (float) param1, (float) param2));
     }
 
     /**
@@ -606,8 +606,8 @@ public class Tween {
      * @param duration The duration of the wait in milliseconds (or in ticks if useTicks is true).
      * @return The tween instance for chain calls.
      */
-    public Tween wait(int duration) {
-        return new Tween(overlay.wait(duration));
+    public TweenJs wait(int duration) {
+        return new TweenJs(overlay.wait(duration));
     }
 
 }

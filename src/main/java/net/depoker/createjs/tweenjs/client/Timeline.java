@@ -24,9 +24,9 @@ public class Timeline {
      * @param tweens An array of Tweens to add to this timeline. See addTween for more info.
      * @param labels An object defining labels for using gotoAndPlay/Stop. See setLabels for details.
      */
-    public Timeline(List<Tween> tweens, Map<String, Integer> labels) {
+    public Timeline(List<TweenJs> tweens, Map<String, Integer> labels) {
         ArrayList<TweenImpl> tweensImpl = new ArrayList<TweenImpl>();
-        for (Tween tween : tweens) {
+        for (TweenJs tween : tweens) {
             tweensImpl.add(tween.getOverlay());
         }
         overlay = TimelineImpl.create(tweensImpl, labels, null);
@@ -38,9 +38,9 @@ public class Timeline {
      * @param labels An object defining labels for using gotoAndPlay/Stop. See setLabels for details.
      * @param props  The configuration properties to apply to this tween instance (ex. ). All properties default to false.
      */
-    public Timeline(List<Tween> tweens, Map<String, Integer> labels, JavaScriptObject props) {
+    public Timeline(List<TweenJs> tweens, Map<String, Integer> labels, JavaScriptObject props) {
         ArrayList<TweenImpl> tweensImpl = new ArrayList<TweenImpl>();
-        for (Tween tween : tweens) {
+        for (TweenJs tween : tweens) {
             tweensImpl.add(tween.getOverlay());
         }
         overlay = TimelineImpl.create(tweensImpl, labels, props);
@@ -96,8 +96,8 @@ public class Timeline {
      *
      * @param tweens The tween(s) to add. Accepts multiple arguments.
      */
-    public void addTween(Tween ... tweens) {
-        for (Tween tween : tweens) {
+    public void addTween(TweenJs... tweens) {
+        for (TweenJs tween : tweens) {
             overlay.addTween(tween.getOverlay());
         }
     }
@@ -138,8 +138,8 @@ public class Timeline {
      * Removes one or more tweens from this timeline.
      * @param tweens The tween(s) to remove. Accepts multiple arguments.
      */
-    public void removeTween(Tween ... tweens) {
-        for (Tween tween : tweens) {
+    public void removeTween(TweenJs... tweens) {
+        for (TweenJs tween : tweens) {
             overlay.removeTween(tween.getOverlay());
         }
     }
