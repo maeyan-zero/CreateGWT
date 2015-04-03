@@ -1,12 +1,12 @@
 package net.depoker.createjs.easeljs.client;
 
-import net.depoker.createjs.easeljs.client.display.Stage;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.TextResource;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import net.depoker.createjs.easeljs.client.display.Stage;
 
 /**
  * GWT implementation of EaselJS - see www.createjs.com
@@ -16,6 +16,17 @@ public class EaselJs extends HTMLPanel
 	/** The GWT Stage implementation. Each canvas has one stage only. */
 	protected final Stage stage;
 
+	public EaselJs()
+	{
+		this(null);
+	}
+
+	public EaselJs(String html)
+	{
+		super("canvas", html);
+		stage = new Stage(getElement());
+	}
+
 	/**
 	 * Create a new EaselJS canvas with a drawing area in the given dimensions.
 	 *
@@ -24,16 +35,14 @@ public class EaselJs extends HTMLPanel
 	 */
 	public EaselJs(int width, int height)
 	{
-		super("canvas", null);
+		this(null);
 		setWidth(width + "px");
 		setHeight(height + "px");
-
-		stage = new Stage(getElement());
 	}
 
 	/**
 	 * Returns the Stage.
-	 * 
+	 *
 	 * @return The EaselJs Stage for this instance.
 	 */
 	public Stage getStage()
