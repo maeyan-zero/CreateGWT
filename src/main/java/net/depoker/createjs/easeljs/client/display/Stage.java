@@ -1,8 +1,8 @@
 package net.depoker.createjs.easeljs.client.display;
 
-import net.depoker.createjs.easeljs.client.display.impl.StageImpl;
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Element;
+import net.depoker.createjs.common.client.event.TickEvent;
+import net.depoker.createjs.easeljs.client.display.impl.StageImpl;
 
 public class Stage extends Container {
 
@@ -188,8 +188,13 @@ public class Stage extends Container {
      * Each time the update method is called, the stage will tick any descendants exposing a tick method (ex. BitmapAnimation)
      * and render its entire display list to the canvas.
      */
-    public void update(JavaScriptObject params) {
-        overlay.update(params);
+
+    public void update() {
+	    overlay.update(null);
+    }
+
+    public void update(TickEvent tickEvent) {
+        overlay.update(tickEvent.getImpl());
     }
 
     /**

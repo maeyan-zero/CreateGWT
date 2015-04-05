@@ -5,6 +5,7 @@
 
     <inherits name="com.google.gwt.user.User"/>
 	<inherits name="com.google.gwt.json.JSON"/>
+	<inherits name="net.depoker.createjs.common.CreateGwt" />
 
 	<!-- NOTE: There is a compatibility issue with EaselJS and GWT.
 
