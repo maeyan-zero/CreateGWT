@@ -1,12 +1,15 @@
+/*
+ * Copyright 2012-2015 Double Edged Poker
+ */
+
 package net.depoker.createjs.easeljs.client.display.impl;
 
-import net.depoker.createjs.easeljs.client.geom.impl.RectangleImpl;
 import net.depoker.createjs.easeljs.client.helper.AnimationCallback;
 
 public class SpriteImpl extends DisplayObjectImpl {
 
 	protected SpriteImpl() {}
-	
+
 	public static native SpriteImpl create(SpriteSheetImpl spriteSheet) /*-{
 		return new $wnd.createjs.Sprite(spriteSheet);
     }-*/;
@@ -65,22 +68,18 @@ public class SpriteImpl extends DisplayObjectImpl {
         this.advance();
     }-*/;
 
-	public final native RectangleImpl getBounds() /*-{
-		return this.getBounds();
-	}-*/;
-
     public final native void gotoAndPlay(int frame) /*-{
 		this.gotoAndPlay(frame);
 	}-*/;
-	
+
 	public final native void gotoAndPlay(String frameOrSequence) /*-{
 		this.gotoAndPlay(frameOrSequence);
 	}-*/;
-	
+
 	public final native void gotoAndStop(int frame) /*-{
 		this.gotoAndStop(frame);
 	}-*/;
-	
+
 	public final native void gotoAndStop(String frameOrSequence) /*-{
 		this.gotoAndStop(frameOrSequence);
 	}-*/;

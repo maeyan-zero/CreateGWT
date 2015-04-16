@@ -1,13 +1,17 @@
-package net.depoker.createjs.easeljs.client.display.impl;
+/*
+ * Copyright 2012-2015 Double Edged Poker
+ */
 
-import net.depoker.createjs.easeljs.client.geom.impl.Matrix2DImpl;
-import net.depoker.createjs.easeljs.client.geom.impl.PointImpl;
-import net.depoker.createjs.easeljs.client.helper.Handler;
-import net.depoker.createjs.easeljs.client.helper.MouseCallback;
+package net.depoker.createjs.easeljs.client.display.impl;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.CanvasElement;
+import net.depoker.createjs.easeljs.client.geom.impl.Matrix2DImpl;
+import net.depoker.createjs.easeljs.client.geom.impl.PointImpl;
+import net.depoker.createjs.easeljs.client.geom.impl.RectangleImpl;
+import net.depoker.createjs.easeljs.client.helper.Handler;
+import net.depoker.createjs.easeljs.client.helper.MouseCallback;
 
 public class DisplayObjectImpl extends JavaScriptObject {
 
@@ -44,7 +48,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native String getName() /*-{
 		return this.name;
 	}-*/;
-	
+
 	public final native void setName(String name) /*-{
 		this.name = name;
 	}-*/;
@@ -56,7 +60,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getRegX() /*-{
 		return this.regX;
 	}-*/;
-	
+
 	public final native void setRegX(double x) /*-{
 		this.regX = x;
 	}-*/;
@@ -64,7 +68,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getRegY() /*-{
 		return this.regY;
 	}-*/;
-	
+
 	public final native void setRegY(double y) /*-{
 		this.regY = y;
 	}-*/;
@@ -72,7 +76,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getRotation() /*-{
 		return this.rotation;
 	}-*/;
-	
+
 	public final native void setRotation(double degrees) /*-{
 		this.rotation = degrees;
 	}-*/;
@@ -80,7 +84,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getScaleX() /*-{
 		return this.scaleX;
 	}-*/;
-	
+
 	public final native void setScaleX(double scaleX) /*-{
 		this.scaleX = scaleX;
 	}-*/;
@@ -88,7 +92,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getScaleY() /*-{
 		return this.scaleY;
 	}-*/;
-	
+
 	public final native void setScaleY(double scaleY) /*-{
 		this.scaleY = scaleY;
 	}-*/;
@@ -112,11 +116,11 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native ShadowImpl getShadow() /*-{
 		return this.shadow;
 	}-*/;
-	
+
 	public final native void setShadow(ShadowImpl shadow) /*-{
 		this.shadow = shadow;
 	}-*/;
-	
+
 	public final native boolean isVisible() /*-{
 		return this.isVisible();
 	}-*/;
@@ -132,15 +136,15 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native double getX() /*-{
 		return this.x;
 	}-*/;
-	
+
 	public final native void setX(double x) /*-{
 		this.x = x;
 	}-*/;
-	
+
 	public final native double getY() /*-{
 		return this.y;
 	}-*/;
-	
+
 	public final native void setY(double y) /*-{
 		this.y = y;
 	}-*/;
@@ -184,11 +188,11 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	public final native void cache(double x, double y, double w, double h, double scale) /*-{
 		this.cache(x, y, w, h, scale);
 	}-*/;
-	
+
 	public final native void draw(JavaScriptObject ctx, boolean ignoreCache) /*-{
 		this.draw(ctx, ignoreCache);
 	}-*/;
-	
+
 	public final native void uncache() /*-{
 		this.uncache();
 	}-*/;
@@ -212,7 +216,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
     public final native void setMask(ShapeImpl mask) /*-{
     	this.mask = mask;
     }-*/;
-    
+
     public final native ShapeImpl getMask() /*-{
     	return this.mask;
     }-*/;
@@ -309,4 +313,7 @@ public class DisplayObjectImpl extends JavaScriptObject {
 	    return Object.prototype.toString.call(this);
 	}-*/;
 
+	public final native RectangleImpl getBounds() /*-{
+		return this.getBounds();
+	}-*/;
 }

@@ -1,20 +1,25 @@
-package net.depoker.createjs.easeljs.client.display;
+/*
+ * Copyright 2012-2015 Double Edged Poker
+ */
 
-import net.depoker.createjs.easeljs.client.display.impl.*;
-import net.depoker.createjs.easeljs.client.event.MouseEvent;
-import net.depoker.createjs.easeljs.client.event.impl.MouseEventImpl;
-import net.depoker.createjs.easeljs.client.filter.Filter;
-import net.depoker.createjs.easeljs.client.geom.Matrix2D;
-import net.depoker.createjs.easeljs.client.geom.Point;
-import net.depoker.createjs.easeljs.client.helper.CompositeOperation;
-import net.depoker.createjs.easeljs.client.helper.Handler;
-import net.depoker.createjs.easeljs.client.helper.MouseCallback;
+package net.depoker.createjs.easeljs.client.display;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.dom.client.CanvasElement;
+import net.depoker.createjs.easeljs.client.display.impl.DisplayObjectImpl;
+import net.depoker.createjs.easeljs.client.display.impl.ShapeImpl;
+import net.depoker.createjs.easeljs.client.event.MouseEvent;
+import net.depoker.createjs.easeljs.client.event.impl.MouseEventImpl;
+import net.depoker.createjs.easeljs.client.filter.Filter;
+import net.depoker.createjs.easeljs.client.geom.Matrix2D;
+import net.depoker.createjs.easeljs.client.geom.Point;
+import net.depoker.createjs.easeljs.client.geom.Rectangle;
+import net.depoker.createjs.easeljs.client.helper.CompositeOperation;
+import net.depoker.createjs.easeljs.client.helper.Handler;
+import net.depoker.createjs.easeljs.client.helper.MouseCallback;
 
 /**
  * DisplayObject is an abstract class that should not be constructed directly. Instead construct subclasses such as
@@ -715,6 +720,10 @@ public class DisplayObject {
      * @param compositeOperation The compositeOperation to use, or null to clear the cache and redraw it.
      */
     public void updateCache(String compositeOperation) { overlay.updateCache(compositeOperation); }
+
+	public Rectangle getBounds() {
+		return new Rectangle( overlay.getBounds() );
+	}
 
     //
     // Events:
