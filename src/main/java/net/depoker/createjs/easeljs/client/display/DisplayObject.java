@@ -9,6 +9,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.dom.client.CanvasElement;
+import net.depoker.createjs.common.client.EventDispatcher;
 import net.depoker.createjs.easeljs.client.display.impl.DisplayObjectImpl;
 import net.depoker.createjs.easeljs.client.display.impl.ShapeImpl;
 import net.depoker.createjs.easeljs.client.event.MouseEvent;
@@ -18,7 +19,6 @@ import net.depoker.createjs.easeljs.client.geom.Matrix2D;
 import net.depoker.createjs.easeljs.client.geom.Point;
 import net.depoker.createjs.easeljs.client.geom.Rectangle;
 import net.depoker.createjs.easeljs.client.helper.CompositeOperation;
-import net.depoker.createjs.easeljs.client.helper.Handler;
 import net.depoker.createjs.easeljs.client.helper.MouseCallback;
 
 /**
@@ -29,7 +29,7 @@ import net.depoker.createjs.easeljs.client.helper.MouseCallback;
  *
  * @version 0.6.0
  */
-public class DisplayObject {
+public class DisplayObject extends EventDispatcher {
 
 	public final static String CLICK = "click";
 	public final static String DOUBLE_CLICK = "dblclick";
@@ -40,7 +40,10 @@ public class DisplayObject {
 
 	private final DisplayObjectImpl overlay;
 
-	public DisplayObject(DisplayObjectImpl impl) { overlay = impl; }
+	public DisplayObject(DisplayObjectImpl impl) {
+		super( impl );
+		overlay = impl;
+	}
 
 	/**
 	 * Returns the jso implementation.
@@ -452,22 +455,6 @@ public class DisplayObject {
     // Methods:
     //
 
-	/**
-	 * Adds the specified event listener.
-	 *
-	 * @param type The string type of the event
-	 * @param listener An object with a handleEvent method, or a function that will be called when the event is dispatched
-	 */
-	public void addEventListener(String type, Handler listener) { overlay.addEventListener(type, listener); }
-
-	/**
-	 * Adds the specified event listener.
-	 *
-	 * @param type The string type of the event
-	 * @param callback An object with a handleEvent method, or a function that will be called when the event is dispatched
-	 */
-	public void addEventListener(String type, MouseCallback callback) { overlay.addEventListener(type, callback); }
-
     /**
      * Draws the display object into a new canvas, which is then used for subsequent draws. For complex content that
      * does not change frequently (ex. a Sprite with many children that do not move, or a complex vector Shape), this
@@ -512,23 +499,6 @@ public class DisplayObject {
      * @return A clone of the current DisplayObject instance
      */
     public DisplayObject clone() { return new DisplayObject(overlay.clone()); }
-
-	/**
-	 * Dispatches the specified event.
-	 *
-	 * @param event An object with a "type" property, or a string type. If a string is used, dispatchEvent will contstruct
-	 *              a generic event object with "type" and "params" properties.
-	 */
-	public void dispatchEvent(String event) { overlay.dispatchEvent(event); }
-
-	/**
-	 * Dispatches the specified event.
-	 *
-	 * @param event  An object with a "type" property, or a string type. If a string is used, dispatchEvent will contstruct
-	 *               a generic event object with "type" and "params" properties
-	 * @param target The object to use as the target property of the event object. This will default to the dispatching object
-	 */
-	public void dispatchEvent(String event, DisplayObject target) { overlay.dispatchEvent(event, target.getOverlay()); }
 
     /**
      * Draws the display object into the specified context ignoring it's visible, alpha, shadow, and transform. Returns
@@ -601,14 +571,6 @@ public class DisplayObject {
      */
     public Point globalToLocal(int x, int y) { return new Point(overlay.globalToLobal(x, y)); }
 
-	/**
-	 * Indicates whether there is at least one listener for the specified event type.
-	 *
-	 * @param type The string type of the event.
-	 * @return Returns true if there is at least one listener for the specified event.
-	 */
-	public boolean hasEventListener(String type) { return overlay.hasEventListener(type); }
-
     /**
      * Tests whether the display object intersects the specified local point (ie. draws a pixel with alpha > 0 at the
      * specified position). This ignores the alpha, shadow and compositeOperation of the display object, and all
@@ -655,18 +617,6 @@ public class DisplayObject {
      * coordinate space.
      */
     public Point localToLocal(int x, int y, DisplayObject target) { return new Point(overlay.localToLocal(x, y, target.getOverlay())); }
-
-	/**
-	 * Removes all listeners for the specified type, or all listeners of all types.
-	 */
-	public void removeAllEventListeners() { overlay.removeAllEventListeners(); }
-
-	/**
-	 * Removes all listeners for the specified type, or all listeners of all types.
-	 *
-	 * @param type The string type of the event.
-	 */
-	public void removeAllEventListeners(String type) { overlay.removeAllEventListeners(type); }
 	/**
 	 * Provides a chainable shortcut method for setting a number of properties on a DisplayObject instance.
 	 * Ex. var shape = stage.addChild( new Shape() ).set({graphics:myGraphics, x:100, y:100, alpha:0.5});
