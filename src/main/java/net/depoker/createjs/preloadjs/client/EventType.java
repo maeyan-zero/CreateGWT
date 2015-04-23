@@ -1,3 +1,7 @@
+/*
+ * Copyright 2012-2015 Double Edged Poker
+ */
+
 package net.depoker.createjs.preloadjs.client;
 
 
@@ -14,7 +18,7 @@ public enum EventType {
 
   final private String string;
 
-  private EventType(String string) {
+  EventType(String string) {
     this.string = string;
   }
 

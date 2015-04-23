@@ -1,10 +1,13 @@
+/*
+ * Copyright 2012-2015 Double Edged Poker
+ */
+
 package net.depoker.createjs.preloadjs.client;
 
-import net.depoker.createjs.preloadjs.client.impl.LoadItemImpl;
 import com.google.gwt.core.client.JavaScriptObject;
+import net.depoker.createjs.preloadjs.client.impl.LoadItemImpl;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.validation.constraints.NotNull;
 
 public class LoadItem {
   private final LoadItemImpl impl;
@@ -17,26 +20,27 @@ public class LoadItem {
     impl = LoadItemImpl.create(src);
   }
 
-  @Nullable
-  public String getId() {
+  public @NotNull String getId() {
     return impl.getId();
   }
 
-  @NotNull
-  public LoadItemImpl getImpl() {
+  public @NotNull LoadItemImpl getImpl() {
     return impl;
   }
 
-  @NotNull
-  public String getSource() {
+  public @NotNull String getSource() {
     return impl.getSrc();
   }
 
-	public String getType() {
+	public @Nullable String getType() {
 		return impl.getType();
 	}
 
   public boolean isOrderMaintained() {
     return impl.isOrderMaintained();
   }
+
+	public @Nullable JavaScriptObject getData() {
+		return impl.getData();
+	}
 }
