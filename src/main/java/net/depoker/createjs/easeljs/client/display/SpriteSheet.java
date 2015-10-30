@@ -9,7 +9,6 @@ import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.Timer;
 import net.depoker.createjs.common.client.Event;
 import net.depoker.createjs.common.client.EventDispatcher;
 import net.depoker.createjs.common.client.EventListener;
@@ -137,11 +136,7 @@ public class SpriteSheet extends EventDispatcher {
 	public void addOnCompleteHandler(final SpriteSheetCallback callback) {
 		addEventListener( "complete", new EventListener() {
 			@Override public void handleEvent(Event event) {
-				new Timer() {
-					@Override public void run() {
-						callback.onComplete();
-					}
-				}.schedule( 1 );
+				callback.onComplete();
 			}
 		} );
 	}
