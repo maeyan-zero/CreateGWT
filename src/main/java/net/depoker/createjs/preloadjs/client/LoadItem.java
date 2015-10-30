@@ -17,7 +17,7 @@ public class LoadItem {
   }
 
   public LoadItem(@NotNull String src) {
-    impl = LoadItemImpl.create(src);
+    impl = LoadItemImpl.create( src );
   }
 
   public @NotNull String getId() {
@@ -30,6 +30,10 @@ public class LoadItem {
 
   public @NotNull String getSource() {
     return impl.getSrc();
+  }
+
+  public void setSource(@NotNull String source) {
+    impl.setSrc( source );
   }
 
 	public @Nullable String getType() {

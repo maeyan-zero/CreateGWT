@@ -1,5 +1,7 @@
 package net.depoker.createjs.preloadjs.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 import net.depoker.createjs.common.client.Event;
 import net.depoker.createjs.common.client.EventListener;
 import net.depoker.createjs.preloadjs.client.event.FileProgressEvent;
@@ -8,8 +10,6 @@ import net.depoker.createjs.preloadjs.client.event.FileStartEvent;
 import net.depoker.createjs.preloadjs.client.event.FileStartListener;
 import net.depoker.createjs.preloadjs.client.impl.LoadItemImpl;
 import net.depoker.createjs.preloadjs.client.impl.LoadQueueImpl;
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class LoadQueue extends AbstractLoader {
     impl.setMaxConnections(value);
   }
 
-  public void setPaused(int value) {
+  public void setPaused(boolean value) {
     impl.setPaused(value);
   }
 

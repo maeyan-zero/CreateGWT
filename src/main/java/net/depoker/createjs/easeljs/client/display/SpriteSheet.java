@@ -9,10 +9,13 @@ import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Timer;
+import net.depoker.createjs.common.client.Event;
+import net.depoker.createjs.common.client.EventDispatcher;
+import net.depoker.createjs.common.client.EventListener;
 import net.depoker.createjs.easeljs.client.display.impl.SpriteSheetImpl;
 import net.depoker.createjs.easeljs.client.helper.Frame;
 import net.depoker.createjs.easeljs.client.helper.FrameData;
-import net.depoker.createjs.easeljs.client.helper.Handler;
 import net.depoker.createjs.easeljs.client.helper.SpriteSheetCallback;
 
 import java.util.*;
@@ -29,36 +32,34 @@ import java.util.*;
  * <li>Likewise, animations can be represented in two ways: As a series of sequential frames, defined by a start and end
  * frame [0,3], or as a list of frames [0,1,2,3].</li></ul>
  */
-public class SpriteSheet {
+public class SpriteSheet extends EventDispatcher {
 
-	public final static String COMPLETE = "complete";
-
-	private final SpriteSheetImpl overlay;
-
-	private final List<SpriteSheetCallback> completeCallbacks = new ArrayList<SpriteSheetCallback>();
+	private final SpriteSheetImpl impl;
 
 	public SpriteSheet(JavaScriptObject meta) {
-		overlay = SpriteSheetImpl.create(meta);
-		overlay.setCompleteHandler(this);
+		super( SpriteSheetImpl.create( meta ) );
+		this.impl = getImpl().cast();
 	}
 
 	public SpriteSheet(FrameData frameData) {
-		overlay = SpriteSheetImpl.create( frameData.getOverlay() );
-		overlay.setCompleteHandler(this);
+		super( SpriteSheetImpl.create( frameData.getOverlay() ) );
+		this.impl = getImpl().cast();
 	}
 
-	public SpriteSheetImpl getOverlay() { return overlay; }
+	public SpriteSheetImpl getOverlay() {
+		return impl;
+	}
 
 	/**
 	 * Read-only property indicating whether all images are finished loading.
 	 */
-	public boolean isComplete() { return overlay.getComplete(); }
+	public boolean isComplete() { return impl.getComplete(); }
 
 	public Map<String, Object> getAnimation(String animation) {
-		JavaScriptObject jso = overlay.getAnimation(animation);
+		JavaScriptObject jso = impl.getAnimation(animation);
 		if (jso == null) return null;
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		JSONObject json = new JSONObject(jso);
 		Set<String> keySet = json.keySet();
 		for (String key : keySet) {
@@ -67,7 +68,7 @@ public class SpriteSheet {
 			if (value.isNumber() != null) { // stand: 13
 				map.put(key, value.isNumber().doubleValue());
 			} else if (value.isArray() != null) {
-				List<Object> array = new ArrayList<Object>();
+				List<Object> array = new ArrayList<>();
 				JSONArray jsArray = value.isArray();
 				for (int i = 0; i < jsArray.size(); i++) {
 					jsArray.get(i);
@@ -87,7 +88,7 @@ public class SpriteSheet {
 	 * @return an array of animation names available on this sprite sheet.
 	 */
 	public ArrayList<String> getAnimations() {
-		JsArrayString jsArray = overlay.getAnimations();
+		JsArrayString jsArray = impl.getAnimations();
 		ArrayList<String> array = new ArrayList<String>();
 		for (int i=0; i<jsArray.length(); i++) { array.add(jsArray.get(i)); }
 		return array;
@@ -104,8 +105,8 @@ public class SpriteSheet {
 	 * or the image is not fully loaded.
 	 */
 	public Frame getFrame(int frameIndex) {
-		return (overlay.getFrame(frameIndex) != null) ?
-				new Frame(overlay.getFrame(frameIndex)) : null;
+		return (impl.getFrame(frameIndex) != null) ?
+				new Frame(impl.getFrame(frameIndex)) : null;
 	}
 
 	/**
@@ -115,9 +116,9 @@ public class SpriteSheet {
 	 * @param animation The name of the animation to get a frame count for.
 	 * @return The number of frames in the animation, or in the entire sprite sheet if the animation param is omitted.
 	 */
-	public int getNumFrames(String animation) { return overlay.getNumFrames(animation); }
+	public int getNumFrames(String animation) { return impl.getNumFrames( animation ); }
 
-	public int getNumFrames() { return overlay.getNumFrames(null); }
+	public int getNumFrames() { return impl.getNumFrames(null); }
 
 	/**
 	 * The onComplete callback is called when all images are loaded. Note that this only fires if the images were not
@@ -133,60 +134,16 @@ public class SpriteSheet {
 	 *
 	 * @param callback The callback to fire on the complete event
 	 */
-	public void addOnCompleteHandler(SpriteSheetCallback callback) { completeCallbacks.add(callback); }
-
-	/**
-	 * Adds the specified event listener.
-	 *
-	 * @param type The string type of the event
-	 * @param listener An object with a handleEvent method, or a function that will be called when the event is dispatched
-	 */
-	public void addEventListener(String type, Handler listener) { overlay.addEventListener(type, listener); }
-
-	/**
-	 * Dispatches the specified event.
-	 *
-	 * @param event An object with a "type" property, or a string type. If a string is used, dispatchEvent will contstruct
-	 *              a generic event object with "type" and "params" properties.
-	 */
-	public void dispatchEvent(String event) { overlay.dispatchEvent(event); }
-
-	/**
-	 * Dispatches the specified event.
-	 *
-	 * @param event  An object with a "type" property, or a string type. If a string is used, dispatchEvent will contstruct
-	 *               a generic event object with "type" and "params" properties
-	 * @param target The object to use as the target property of the event object. This will default to the dispatching object
-	 */
-	public void dispatchEvent(String event, DisplayObject target) { overlay.dispatchEvent(event, target.getOverlay()); }
-
-	/**
-	 * Indicates whether there is at least one listener for the specified event type.
-	 *
-	 * @param type The string type of the event.
-	 * @return Returns true if there is at least one listener for the specified event.
-	 */
-	public boolean hasEventListener(String type) { return overlay.hasEventListener(type); }
-
-	/**
-	 * Removes all listeners for the specified type, or all listeners of all types.
-	 */
-	public void removeAllEventListeners() { overlay.removeAllEventListeners(); }
-
-	/**
-	 * Removes all listeners for the specified type, or all listeners of all types.
-	 *
-	 * @param type The string type of the event.
-	 */
-	public void removeAllEventListeners(String type) { overlay.removeAllEventListeners(type); }
-
-	/**
-	 * Fired by the overlay, wiring the pojo implementation.
-	 **/
-	protected void onComplete() {
-		for (SpriteSheetCallback callback : completeCallbacks) {
-			callback.onComplete();
-		}
+	public void addOnCompleteHandler(final SpriteSheetCallback callback) {
+		addEventListener( "complete", new EventListener() {
+			@Override public void handleEvent(Event event) {
+				new Timer() {
+					@Override public void run() {
+						callback.onComplete();
+					}
+				}.schedule( 1 );
+			}
+		} );
 	}
 
 }

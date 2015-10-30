@@ -4,8 +4,8 @@
 
 package net.depoker.createjs.preloadjs.client.event;
 
-import com.google.gwt.core.client.JavaScriptObject;
 import net.depoker.createjs.common.client.Event;
+import net.depoker.createjs.preloadjs.client.LoadItem;
 
 public class FileStartEvent extends Event {
 	private final FileStartEventImpl impl;
@@ -15,7 +15,7 @@ public class FileStartEvent extends Event {
 	  this.impl = getImpl().cast();
   }
 
-	public JavaScriptObject getItem() {
-		return impl.item();
+	public LoadItem getItem() {
+		return new LoadItem( impl.item() );
 	}
 }

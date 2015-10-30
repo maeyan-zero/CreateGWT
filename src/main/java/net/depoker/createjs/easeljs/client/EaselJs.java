@@ -1,30 +1,31 @@
 package net.depoker.createjs.easeljs.client;
 
+import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.TextResource;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import net.depoker.createjs.easeljs.client.display.Stage;
 
 /**
  * GWT implementation of EaselJS - see www.createjs.com
  */
-public class EaselJs extends HTMLPanel
-{
+public class EaselJs extends Composite {
+
 	/** The GWT Stage implementation. Each canvas has one stage only. */
+	protected final Canvas canvas;
 	protected final Stage stage;
 
-	public EaselJs()
-	{
-		this(null);
+	public EaselJs() {
+		this( Canvas.createIfSupported() );
 	}
 
-	public EaselJs(String html)
-	{
-		super("canvas", html);
-		stage = new Stage(getElement());
+	public EaselJs(CanvasElement element) {
+		this( Canvas.wrap( element ) );
 	}
 
 	/**
@@ -33,12 +34,25 @@ public class EaselJs extends HTMLPanel
 	 * @param width  The default width of the drawing area in pixels.
 	 * @param height The default height of the drawing area in pixels.
 	 */
-	public EaselJs(int width, int height)
-	{
-		this(null);
+	public EaselJs(int width, int height) {
+		this();
 		setWidth(width + "px");
 		setHeight(height + "px");
 	}
+
+	protected EaselJs(Canvas canvas) {
+		this.canvas = canvas;
+
+		if (canvas != null) {
+			initWidget( canvas );
+			stage = new Stage( getElement() );
+		} else {
+			initWidget( new HTML( "Your browser does not support HTML5." ) );
+			stage = null;
+		}
+	}
+
+
 
 	/**
 	 * Returns the Stage.
@@ -48,6 +62,14 @@ public class EaselJs extends HTMLPanel
 	public Stage getStage()
 	{
 		return stage;
+	}
+
+	public void add(Widget widget) {
+		getElement().appendChild( widget.getElement() );
+	}
+
+	public void remove(Widget widget) {
+		getElement().removeChild( widget.getElement() );
 	}
 
 	/**

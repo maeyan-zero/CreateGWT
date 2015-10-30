@@ -4,6 +4,7 @@
 
 package net.depoker.createjs.soundjs.client.event;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import net.depoker.createjs.common.client.impl.EventImpl;
 
 public class FileErrorEventImpl extends EventImpl {
@@ -12,5 +13,17 @@ public class FileErrorEventImpl extends EventImpl {
 
 	public final native String getId() /*-{
 	  return this.id;
+  }-*/;
+
+	public final native String getTitle() /*-{
+	  return this.title;
+  }-*/;
+
+	public final native String getMessage() /*-{
+	  return this.message;
+  }-*/;
+
+	public final native JavaScriptObject getData() /*-{
+	  return this.data;
   }-*/;
 }

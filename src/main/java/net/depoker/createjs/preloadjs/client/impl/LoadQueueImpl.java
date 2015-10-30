@@ -85,7 +85,7 @@ public class LoadQueueImpl extends AbstractLoaderImpl {
     this.setMaxConnections(value);
   }-*/;
 
-  public final native void setPaused(int value) /*-{
+  public final native void setPaused(boolean value) /*-{
     this.setPaused(value);
   }-*/;
 
